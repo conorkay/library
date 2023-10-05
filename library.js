@@ -1,8 +1,8 @@
 const myLibrary = [];
 const addButton = document.getElementById("addButton");
-
 const newBookDialog = document.getElementById("newBookDialog");
 const newBookForm = document.getElementById("newBookForm");
+const cancelButton = document.getElementById("cancel");
 
 addButton.addEventListener("click", (event) => {
   newBookDialog.showModal();
@@ -24,6 +24,13 @@ newBookForm.addEventListener("submit", (event) => {
     event.currentTarget.pages.value,
     event.currentTarget.read.checked
   );
+
+  closeTheDialog(newBookDialog);
+});
+
+cancelButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  closeTheDialog(newBookDialog);
 });
 
 function Book(title, author, pages, read) {
@@ -38,13 +45,35 @@ function addBookToLibrary(title, author, pages, read) {
 
   myLibrary.push(newBook);
   console.log(myLibrary);
+  displayLibrary();
 }
 
-function displayLibrary() {}
+function displayLibrary() {
+  clearBookshelf();
+  myLibrary.forEach((Book) => {
+    let bookCard = document.createElement("div");
+    bookCard.className = "bookCard";
+    document.getElementById("bookshelf").appendChild(bookCard);
+  });
+}
 
-function closeTheForm() {
-  newBookForm.close();
-  openCheck(newBookDialog);
+function clearBookshelf() {
+  var bookshelf = document.getElementById("bookshelf");
+  var first = bookshelf.firstElementChild;
+  while (first) {
+    first.remove();
+    first = bookshelf.firstElementChild;
+  }
+}
+
+function clearLibrary() {
+  clearBookshelf();
+  myLibrary = [];
+}
+
+function closeTheDialog(dialog) {
+  dialog.close();
+  openCheck(dialog);
 }
 
 function openCheck(dialog) {

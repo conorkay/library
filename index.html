@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="style.css" />
     <title>Library</title>
   </head>
+
   <body>
     <h1>Library</h1>
     <div>
       <button id="addButton">Add</button>
-      <button id="removeButton">Remove</button>
     </div>
 
     <dialog id="newBookDialog">
@@ -39,10 +39,12 @@
         <input type="checkbox" name="read" />
 
         <button id="submit" type="submit">Submit</button>
-        <button type="cancel">Cancel</button>
+        <button id="cancel">Cancel</button>
         <button type="reset">Reset</button>
       </form>
     </dialog>
+
+    <div id="bookshelf"></div>
 
     <script type="text/javascript" src="library.js"></script>
   </body>
